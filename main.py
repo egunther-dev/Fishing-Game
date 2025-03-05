@@ -5,6 +5,14 @@ fish_list_amazon_river = ["Peacock Bass", "Red-Bellied Piranha", "Black Piranha"
 fish_list_kenai_river = ["King Salmon", "Sockeye Salmon", "Coho Salmon", "Silver Salmon", "Rainbow Trout", "Dolly Varden", "Steelhead Trout", "White Sturgeon", "Arctic Char"]
 fish_list_gb_reef = ["Coral Trout", "Red Emperor Snapper", "Spanish Mackerel", "Black Marlin", "Giant Trevally", "Dogtooth Tuna", "Sailfish", "Mahi-Mahi (Dorado)"]
 fish_list_lock_ness = ["Brown Trout", "Atlantic Salmon", "European Eel", "Pike", "Perch", "Sea Trout", "Sturgeon", "Golden Perch (Albino Mutation)"]
+#below is test, global all values on the top
+fish_prob_lake_okch = {
+    "Largemouth Bass": 50,
+    "Black Crappie": 30,
+    "Bluegill": 15,
+    "Chain Pickerel": 4,
+    "Albino Channel Catfish": 1
+}
 
 fish_total = ""
 def start():
