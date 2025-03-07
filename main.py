@@ -110,17 +110,16 @@ def lake_okch():
             input()
             reaction_time = time.time() - start_time
             if reaction_time < 1.0:
-                
-
+                    catch = random.choices(list(fish_prob_lake_okch.keys()), weights=list(fish_prob_lake_okch.values()), k=1)[0]
+                    print(f"Nice catch! You caught a {catch}")
+            else:
+                print("You missed the fish.")
         elif c.strip() == "2":
             return
         else:
             print("Improper Input, please try again.\n\n")
             continue
 
-
-        catch = random.choices(list(fish_prob_lake_okch.keys()), weights=list(fish_prob_lake_okch.values()), k=1)
-        print("".join(catch))
 
 
 
