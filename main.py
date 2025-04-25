@@ -6,7 +6,7 @@ fish_list_amazon_river = ["Peacock Bass", "Red-Bellied Piranha", "Black Piranha"
 fish_list_kenai_river = ["King Salmon", "Sockeye Salmon", "Coho Salmon", "Silver Salmon", "Rainbow Trout", "Dolly Varden", "Steelhead Trout", "White Sturgeon", "Arctic Char"]
 fish_list_gb_reef = ["Coral Trout", "Red Emperor Snapper", "Spanish Mackerel", "Black Marlin", "Giant Trevally", "Dogtooth Tuna", "Sailfish", "Mahi-Mahi (Dorado)"]
 fish_list_lock_ness = ["Brown Trout", "Atlantic Salmon", "European Eel", "Pike", "Perch", "Sea Trout", "Sturgeon", "Golden Perch (Albino Mutation)"]
-
+fish_caught_count = {}
 fish_prob_lake_okch = {
     "Largemouth Bass": 50,
     "Black Crappie": 40,
@@ -71,32 +71,66 @@ fish_prob_lock_ness = {
 
 fish_total = ""
 def start():
-    print("Hello, welcome to Fishing! Please follow the instructions below, and enjoy!")
+    print("Hello, welcome to The Fishing Game! Please follow the instructions below, and enjoy!")
     while True:
-        s = input("Enter the number for the location you'd like to use:\n1) Lake Okeechobee, Florida, USA\n2) Amazon River, Brazil\n3) Kenai River, Alaska, USA\n4) Great Barrier Reef, Australia\n5) Loch Ness, Scotland\n6) Species List\n")
+        s = input("Enter the number for the location you'd like to use:\n1) Lake Okeechobee, Florida, USA\n2) Amazon River, Brazil\n3) Kenai River, Alaska, USA\n4) Great Barrier Reef, Australia\n5) Loch Ness, Scotland\n6) Species List\n7) Quit\n")
 
         if s.strip() == "1":
             lake_okch()
-            print("Test" + str(s))
+            start2()
         elif s.strip() == "2":
-            #amazon_river()
-            print("Test" + str(s))
+            amazon_river()
+            start2()
         elif s.strip() == "3":
-            #kenai_river()
-            print("Test" + str(s))
+            kenai_river()
+            start2()
         elif s.strip() == "4":
-            #gb_reef()
-            print("Test" + str(s))
+            gb_reef()
+            start2()
         elif s.strip() == "5":
-            #lock_ness()
-            print("Test" + str(s))
+            lock_ness()
+            start2()
         elif s.strip() == "6":
             species_list()
-        elif s.strip() != "1" or "2" or "3" or "4" or "5" or "6":
+        elif s.strip() == "7":
+            print("Thank you for playing The Fishing Game. Have a nice day!")
+            print("Quitting...")
+            break
+        elif s.strip() != "1" or "2" or "3" or "4" or "5" or "6" or "7":
             print("Invaild Input\n\n")
             continue
         break
 
+def start2():
+    print("Welcome back! Hope you enjoyed fishing at your last location.\nIf you'd like to continue fishing, please use the corresponding numbers to go to the location.\nIf you want to see the species list, please use the corresponding number.\nIf you'd like to stop playing, type 7.")
+    while True:
+        s = input("Enter the number for the location you'd like to use:\n1) Lake Okeechobee, Florida, USA\n2) Amazon River, Brazil\n3) Kenai River, Alaska, USA\n4) Great Barrier Reef, Australia\n5) Loch Ness, Scotland\n6) Species List\n7) Quit\n")
+
+        if s.strip() == "1":
+            lake_okch()
+            start2()
+        elif s.strip() == "2":
+            amazon_river()
+            start2()
+        elif s.strip() == "3":
+            kenai_river()
+            start2()
+        elif s.strip() == "4":
+            gb_reef()
+            start2()
+        elif s.strip() == "5":
+            lock_ness()
+            start2()
+        elif s.strip() == "6":
+            species_list()
+        elif s.strip() == "7":
+            print("Thank you for playing The Fishing Game. Have a nice day!")
+            print("Quitting...")
+            break
+        elif s.strip() != "1" or "2" or "3" or "4" or "5" or "6" or "7":
+            print("Invaild Input\n\n")
+            continue
+        break
 
 def lake_okch():
     print("Welcome to Lake Okeechobee! Have fun fishing!")
@@ -111,7 +145,12 @@ def lake_okch():
             reaction_time = time.time() - start_time
             if reaction_time < 1.0:
                     catch = random.choices(list(fish_prob_lake_okch.keys()), weights=list(fish_prob_lake_okch.values()), k=1)[0]
-                    print(f"Nice catch! You caught a {catch}")
+                    prob = fish_prob_lake_okch[catch]
+                    if prob <=5:
+                        print(f"Nice Catch! You caught a super rare {catch}")
+                    else:
+                        print(f"Nice catch! You caught a {catch}")
+                    fish_caught_count[catch] = fish_caught_count.get(catch, 0) + 1
             else:
                 print("You missed the fish.")
         elif c.strip() == "2":
@@ -120,7 +159,113 @@ def lake_okch():
             print("Improper Input, please try again.\n\n")
             continue
 
+def amazon_river():
+    print("Welcome to Lake Okeechobee! Have fun fishing!")
+    while True:
+        c = input("Type 1 to cast, and 2 to stop fishing!")
+        if c.strip() == "1":
+            print("Nice cast! Wait until you see BITE appear, then press enter! Be quick, or you'll miss the fish!")
+            time.sleep(random.uniform(2, 7))
+            print("\nBITE!")
+            start_time = time.time()
+            input()
+            reaction_time = time.time() - start_time
+            if reaction_time < 1.0:
+                    catch = random.choices(list(fish_prob_amazon_river.keys()), weights=list(fish_prob_amazon_river.values()), k=1)[0]
+                    prob = fish_prob_lake_okch[catch]
+                    if prob <=5:
+                        print(f"Nice Catch! You caught a super rare {catch}")
+                    else:
+                        print(f"Nice catch! You caught a {catch}")
+                    fish_caught_count[catch] = fish_caught_count.get(catch, 0) + 1
+            else:
+                print("You missed the fish.")
+        elif c.strip() == "2":
+            return
+        else:
+            print("Improper Input, please try again.\n\n")
+            continue
 
+def kenai_river():
+    print("Welcome to Lake Okeechobee! Have fun fishing!")
+    while True:
+        c = input("Type 1 to cast, and 2 to stop fishing!")
+        if c.strip() == "1":
+            print("Nice cast! Wait until you see BITE appear, then press enter! Be quick, or you'll miss the fish!")
+            time.sleep(random.uniform(2, 7))
+            print("\nBITE!")
+            start_time = time.time()
+            input()
+            reaction_time = time.time() - start_time
+            if reaction_time < 1.0:
+                    catch = random.choices(list(fish_prob_kenai_river.keys()), weights=list(fish_prob_kenai_river.values()), k=1)[0]
+                    prob = fish_prob_lake_okch[catch]
+                    if prob <=5:
+                        print(f"Nice Catch! You caught a super rare {catch}")
+                    else:
+                        print(f"Nice catch! You caught a {catch}")
+                    fish_caught_count[catch] = fish_caught_count.get(catch, 0) + 1
+            else:
+                print("You missed the fish.")
+        elif c.strip() == "2":
+            return
+        else:
+            print("Improper Input, please try again.\n\n")
+            continue
+
+def gb_reef():
+    print("Welcome to Lake Okeechobee! Have fun fishing!")
+    while True:
+        c = input("Type 1 to cast, and 2 to stop fishing!")
+        if c.strip() == "1":
+            print("Nice cast! Wait until you see BITE appear, then press enter! Be quick, or you'll miss the fish!")
+            time.sleep(random.uniform(2, 7))
+            print("\nBITE!")
+            start_time = time.time()
+            input()
+            reaction_time = time.time() - start_time
+            if reaction_time < 1.0:
+                    catch = random.choices(list(fish_prob_gb_reef.keys()), weights=list(fish_prob_gb_reef.values()), k=1)[0]
+                    prob = fish_prob_lake_okch[catch]
+                    if prob <=5:
+                        print(f"Nice Catch! You caught a super rare {catch}")
+                    else:
+                        print(f"Nice catch! You caught a {catch}")
+                    fish_caught_count[catch] = fish_caught_count.get(catch, 0) + 1
+            else:
+                print("You missed the fish.")
+        elif c.strip() == "2":
+            return
+        else:
+            print("Improper Input, please try again.\n\n")
+            continue
+
+def lock_ness():
+    print("Welcome to Lake Okeechobee! Have fun fishing!")
+    while True:
+        c = input("Type 1 to cast, and 2 to stop fishing!")
+        if c.strip() == "1":
+            print("Nice cast! Wait until you see BITE appear, then press enter! Be quick, or you'll miss the fish!")
+            time.sleep(random.uniform(2, 7))
+            print("\nBITE!")
+            start_time = time.time()
+            input()
+            reaction_time = time.time() - start_time
+            if reaction_time < 1.0:
+                    catch = random.choices(list(fish_prob_lock_ness.keys()), weights=list(fish_prob_lock_ness.values()), k=1)[0]
+                    prob = fish_prob_lake_okch[catch]
+                    if prob <=5:
+                        print(f"Nice Catch! You caught a super rare {catch}")
+                    else:
+                        print(f"Nice catch! You caught a {catch}")
+                    fish_caught_count[catch] = fish_caught_count.get(catch, 0) + 1
+            else:
+                print("You missed the fish.")
+        elif c.strip() == "2":
+            return
+        else:
+            print("Improper Input, please try again.\n\n")
+            continue
 
 
 
